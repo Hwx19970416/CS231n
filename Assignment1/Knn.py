@@ -20,7 +20,7 @@ class knn_classifiter:
         #dists = np.sqrt(dists)
         
         for i in range(features.shape[0]):
-            closet = self.labels[np.argsort(dists[i])[:k]]
+            closet = self.labels[np.argsort(dists[i])[:,k]]
             y_pred[i] = np.argmax(np.bincount(closet))
             
         return y_pred

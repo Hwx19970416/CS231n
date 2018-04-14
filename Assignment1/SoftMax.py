@@ -18,7 +18,7 @@ class Softmax:
         return total_loss
     
     
-    def train(self,X,y,lamb = 0.000005,learn_rate = 0.0005,training_r = 2000):
+    def train(self,X,y,lamb = 0.0005,learn_rate = 0.0005,training_r = 300):
         m = X.shape[0]
         n = 0
         loss_recorder = []
@@ -30,7 +30,8 @@ class Softmax:
             prob = exp_pri / (np.sum(exp_pri,axis = 1).reshape(60000,1))
             loss = self.__count_loss(prob, y, lamb)  
             
-            print("Iteration %d : %f"%(n,loss))
+            print("Iteration %d :"%n,end = " ")
+            print(loss)
             loss_recorder.append(loss)
             
             prob[np.arange(m),y] = prob[np.arange(m),y] - 1

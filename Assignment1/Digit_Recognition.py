@@ -58,16 +58,18 @@ def load_data(path,type = "train"):
 images,labels = load_data("E:\image_recognition")
 
 images = np.asarray(images, dtype = float )
-images /=255
-sm_classifiter = Softmax(784,10)
 
-loss = sm_classifiter.train(images, labels, learn_rate = 0.01)
+print(images[0].shape)
 
-
+sm_classifiter = Softmax(5,10)
+loss = sm_classifiter.train(images, labels, learn_rate = 0.001)
 images,labels = load_data("E:\image_recognition", type = "t10k")
+print('Training completed')
 
 images = np.asarray(images,dtype = float)
-images /= 255
+
+
+
 leng = len(labels)
 correct = 0
 for i in range(leng):
@@ -75,14 +77,9 @@ for i in range(leng):
     if res == labels[i]:
         correct += 1
     
-
 print(correct / leng)
 plt.title("Loss function")
 plt.xlabel("iterations")
 plt.ylabel("loss")
-plt.plot(range(0,2000),loss)
+plt.plot(range(0,300),loss)
 plt.show()
-    
-    
-    
-    
